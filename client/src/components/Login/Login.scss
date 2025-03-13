@@ -3,15 +3,28 @@
 .login-container {
     max-width: 400px;
     margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+    padding: 22px;
+
+    // border: 1px solid #ccc;
+    // border-radius: 5px;
+    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    // background-color: #f9f9f9;
+    .custom-btn {
+        margin-bottom: 14px !important;
+    }
 
     h1 {
+        font-family: 'Roboto', sans-serif;
         text-align: center;
         margin-bottom: 20px;
+    }
+
+    p {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        font-size: 20px;
+        text-align: center;
+        color: #383E50;
     }
 
     label {
@@ -33,15 +46,15 @@
     button {
         width: 100%;
         padding: 10px;
-        background-color: #007bff;
+        background-color: #0A7AFF;
         color: #fff;
         border: none;
-        border-radius: 3px;
+        border-radius: 8px;
         cursor: pointer;
         transition: background-color 0.3s ease;
 
         &:hover {
-            background-color: #0056b3;
+            background-color: #0A7AFF;
         }
     }
 
@@ -57,10 +70,14 @@
         }
     }
 
-    .error-message {    
+    .error-message {
         color: red;
         margin-top: 5px;
         font-size: 14px;
         margin-bottom: 10px;
     }
+}
+
+.green-blue-btn {
+    color: #145980;
 }

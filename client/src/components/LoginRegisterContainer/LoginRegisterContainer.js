@@ -1,7 +1,10 @@
 // import logo from "./logo.svg";
 import "./LoginRegisterContainer.scss";
 import Login from "../Login/Login"
-import logo from "../../E-Cart.png"
+import logo from "../../Login.png"
+import RightLogin from "../../images/logo-right.svg"
+import LeftTopLogin from "../../images/login-left-top.png"
+import LeftBottomLogin from "../../images/login-left-bottom.png"
 import Register from "../Register/Register";
 import { useState } from "react";
 
@@ -16,16 +19,22 @@ function LoginRegisterContainer(props) {
     };
     return (
         <div className="login-Register-container">
-            <div className="form-container">
-                <div className="logo">
-                    <img src={logo} alt="Logo" />
+            <div className="login-form-card">
+                <div className="form-container">
+                    <div className="logo">
+                        <img src={logo} alt="Logo" />
+                    </div>
+                    {isRegisterUser ? (
+                        <Login navigateToRegisterPage={navigateToRegisterPage} setUserAuthenticatedStatus={props.setUserAuthenticatedStatus} />
+                    ) : (
+                        <Register navigateToLoginPage={navigateToLoginPage} />
+                    )}
                 </div>
-                {isRegisterUser ? (
-                    <Login navigateToRegisterPage={navigateToRegisterPage} setUserAuthenticatedStatus={props.setUserAuthenticatedStatus} />
-                ) : (
-                    <Register navigateToLoginPage={navigateToLoginPage} />
-                )}
+                <div>
+                    <img style={{ width: '458px', height: 'auto' }} src={RightLogin}></img>
+                </div>
             </div>
+
         </div>
     );
 }

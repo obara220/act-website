@@ -2,7 +2,23 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Login.scss";
 import { getBaseURL } from "../apiConfig";
-import TokenRefresher from "../Utils/token"; 
+import TokenRefresher from "../Utils/token";
+
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBCard,
+  MDBCardBody,
+  MDBCol,
+  MDBRow,
+  MDBInput,
+  MDBCheckbox,
+  MDBIcon
+}
+  from 'mdb-react-ui-kit';
+
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+// import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function Login(props) {
   let [uname, setUname] = useState("");
@@ -78,10 +94,11 @@ function Login(props) {
 
   return (
     <>
-      <div className="login-container">
-        <h1>Login</h1>
-        <div>
-          <label>E-Mail</label>
+      <div className="login-container" style={{ paddingBottom: error ? '0px' : '22px' }}>
+        <h1>CREW LOG IN</h1>
+        <p>Welcome back!</p>
+        {/* <div>
+          <label>User ID</label>
           <input type="text" value={uname} onChange={changeName}></input>
         </div>
         <div>
@@ -91,12 +108,23 @@ function Login(props) {
             value={password}
             onChange={changePass}
           ></input>
-        </div>
+        </div> */}
+        <MDBInput wrapperClass='mb-4' label='User ID' id='form1' type='text' value={uname} onChange={changeName} />
+        <MDBInput wrapperClass='mb-4' label='Password' id='form1' type='password' value={password} onChange={changePass} />
+
         {error && <div className="error-message">{error}</div>}
-        <button onClick={handleClick}>Login</button>
-        <div className="register-link" onClick={() => props.navigateToRegisterPage()}>
+        <MDBBtn
+          className={`w-100 mb-4 ${error ? 'custom-btn' : ''}`}
+
+          size='md'
+          onClick={handleClick}
+        >
+          Sign In
+        </MDBBtn>
+        {/* <button className="green-blue-btn" onClick={handleClick}>Sign In</button> */}
+        {/* <div className="register-link" onClick={() => props.navigateToRegisterPage()}>
           Is New User
-        </div>
+        </div> */}
       </div>
     </>
   );
