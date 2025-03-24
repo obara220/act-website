@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux"; // Import useDispatch
+import { setUserAuth } from "../../redux/actions/authActions"; // Import action
+
 import "./Login.scss";
 import { getBaseURL } from "../apiConfig";
 import TokenRefresher from "../Utils/token";
@@ -22,6 +25,8 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function Login(props) {
+  const dispatch = useDispatch(); // Initialize dispatch
+
   let [uname, setUname] = useState("");
   let [password, setPass] = useState("");
   let [error, setError] = useState("");
@@ -112,6 +117,7 @@ function Login(props) {
       // window.location.reload(); // Refresh the page
       setError("");
       navigate("/crew"); // Use navigate to redirect to the login page
+      dispatch(setUserAuth(true));
 
     } else {
       setError("Invalid flight number!"); // Show error message

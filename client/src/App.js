@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux"; // Import useSelector
+
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'; // Import BrowserRouter
 import LoginRegisterForm from "./components/LoginRegisterContainer/LoginRegisterContainer";
@@ -9,9 +11,9 @@ import HeaderContainer from "./components/CrewDashboard/HeaderContainer";
 import CrewContainer from "./components/CrewDashboard/CrewContainer";
 
 function App() {
-  const [isUserAuthenticated, setUserAuthorization] = useState(
-    sessionStorage.getItem("isUserAuthenticated") === "true" || false
-  );
+  const [isUserAuthenticated, setUserAuthorization] = useState(false);
+  const isUserAuthenticatedRedux = useSelector((state) => state.auth.isAuthenticated); // Access Redux state
+console.log(isUserAuthenticatedRedux, '---redux--')
   const [isAdmin, setAdmin] = useState(
     sessionStorage.getItem("isAdmin") === "true" || false
   );
@@ -24,6 +26,12 @@ function App() {
     setAdmin(isAdmin);
     setCustomerId(customerId);
   };
+
+  useEffect(() => {
+    const authStatus = sessionStorage.getItem("isUserAuthenticated") === "true";
+    setUserAuthorization(authStatus);
+  }, []);
+  
 
   const handleLogout = () => {
     sessionStorage.removeItem("isUserAuthenticated");
@@ -44,7 +52,7 @@ function App() {
         <Route path="/login" element={<LoginRegisterForm setUserAuthenticatedStatus={setUserAuthenticatedStatus} />} />
 
         {/* Protect routes that require authentication */}
-        {isUserAuthenticated ? (
+        {isUserAuthenticatedRedux ? (
           <>
             <Route path="/crew" element={<CrewContainer />} />
             {/* <Route path="/dashboard" element={<AdminCustomerContainer />} /> */}
