@@ -1,16 +1,21 @@
-import "./App.scss";
 import { useState } from "react";
-import LoginRegisterForm from "./components/LoginRegisterContainer/LoginRegisterContainer"
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'; // Import BrowserRouter
+import LoginRegisterForm from "./components/LoginRegisterContainer/LoginRegisterContainer";
 import AdminCustomerContainer from "./components/AdminCustomerContainer/AdminCustomerContainer";
+import logo from "./Login.png"
+// Initialization for ES Users
+import HeaderContainer from "./components/CrewDashboard/HeaderContainer";
+import CrewContainer from "./components/CrewDashboard/CrewContainer";
 
 function App() {
-  let [isUserAuthenticated, setUserAuthorization] = useState(
+  const [isUserAuthenticated, setUserAuthorization] = useState(
     sessionStorage.getItem("isUserAuthenticated") === "true" || false
   );
-  let [isAdmin, setAdmin] = useState(
+  const [isAdmin, setAdmin] = useState(
     sessionStorage.getItem("isAdmin") === "true" || false
   );
-  let [customerId, setCustomerId] = useState(
+  const [customerId, setCustomerId] = useState(
     sessionStorage.getItem("customerId") || undefined
   );
 
@@ -19,6 +24,7 @@ function App() {
     setAdmin(isAdmin);
     setCustomerId(customerId);
   };
+
   const handleLogout = () => {
     sessionStorage.removeItem("isUserAuthenticated");
     sessionStorage.removeItem("isAdmin");
@@ -28,33 +34,26 @@ function App() {
     setUserAuthorization(false);
     setAdmin(false);
     setCustomerId(undefined);
+    // Use navigate to redirect to the login page
   };
+
   return (
-    <div >
-      {!isUserAuthenticated ? (
-        <LoginRegisterForm setUserAuthenticatedStatus={setUserAuthenticatedStatus} />
-      ) : (
-        <>
-            <div className="login-button-container"><button
-              onClick={handleLogout}
-              // style={{
-              //   backgroundColor: 'black',
-              //   color: 'white',
-              //   border: 'none',
-              //   padding: '10px 20px',
-              //   borderRadius: '5px',
-              //   cursor: 'pointer'
-              // }}
-              className="login-button"
-            >
-              Logout
-            </button></div>
+    <BrowserRouter>
+      <Routes>
+        {/* Conditionally render LoginRegisterForm if not authenticated */}
+        <Route path="/login" element={<LoginRegisterForm setUserAuthenticatedStatus={setUserAuthenticatedStatus} />} />
 
-          <AdminCustomerContainer isAdmin={isAdmin} customerId={customerId} />
-        </>
-
-      )}
-    </div>
+        {/* Protect routes that require authentication */}
+        {isUserAuthenticated ? (
+          <>
+            <Route path="/crew" element={<CrewContainer />} />
+            {/* <Route path="/dashboard" element={<AdminCustomerContainer />} /> */}
+          </>
+        ) : (
+          <Route path="*" element={<LoginRegisterForm />} />
+        )}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
