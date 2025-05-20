@@ -9,17 +9,19 @@ import logo from "./Login.png"
 // Initialization for ES Users
 import HeaderContainer from "./components/CrewDashboard/HeaderContainer";
 import CrewContainer from "./components/CrewDashboard/CrewContainer";
+import RealtimeChat from "../src/chat-component/realtime-chat";
+// import { useMessagesQuery } from '/hooks/use-messages-query'
 
 function App() {
   const [isUserAuthenticated, setUserAuthorization] = useState(false);
   const isUserAuthenticatedRedux = useSelector((state) => state.auth.isAuthenticated); // Access Redux state
-console.log(isUserAuthenticatedRedux, '---redux--')
   const [isAdmin, setAdmin] = useState(
     sessionStorage.getItem("isAdmin") === "true" || false
   );
   const [customerId, setCustomerId] = useState(
     sessionStorage.getItem("customerId") || undefined
   );
+  // const { data: messages } = useMessagesQuery()
 
   const setUserAuthenticatedStatus = (isAdmin, customerId) => {
     setUserAuthorization(true);
@@ -31,7 +33,7 @@ console.log(isUserAuthenticatedRedux, '---redux--')
     const authStatus = sessionStorage.getItem("isUserAuthenticated") === "true";
     setUserAuthorization(authStatus);
   }, []);
-  
+
 
   const handleLogout = () => {
     sessionStorage.removeItem("isUserAuthenticated");
@@ -55,6 +57,7 @@ console.log(isUserAuthenticatedRedux, '---redux--')
         {isUserAuthenticatedRedux ? (
           <>
             <Route path="/crew" element={<CrewContainer />} />
+            <Route path="/chat" element={<RealtimeChat roomName="my-chat-room" username="john_doe" />} />
             {/* <Route path="/dashboard" element={<AdminCustomerContainer />} /> */}
           </>
         ) : (

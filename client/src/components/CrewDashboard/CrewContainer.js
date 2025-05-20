@@ -6,9 +6,14 @@ import Map from "../../images/map.png"
 import Vehicle from "../../images/vehicle.svg"
 import DriverLicense from "../../images/california-license.png";
 import './index.css'
+import { RealtimeChat } from '../../chat-component/realtime-chat';
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const CrewContainer = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isChatOpen, setIsChatOpen] = useState(false);
+    const navigate = useNavigate(); // Use useNavigate instead of useHistory
+
     const [safetyCheck, setSafetyCheck] = useState({
         clean: true,
         fluids: true,
@@ -17,7 +22,11 @@ const CrewContainer = () => {
         wipers: false,
         tires: false,
     });
-
+    const goToChat = () => {
+        navigate("/chat");
+        // setIsChatOpen(true);
+        // return <RealtimeChat roomName="my-chat-room" username="john_doe" />
+    }
     const toggleSafetyCheck = (key) => {
         setSafetyCheck((prev) => ({
             ...prev,
@@ -43,7 +52,7 @@ const CrewContainer = () => {
             <div className="p-6 w-full pr-6 pl-6">
                 {/* Header */}
                 <HeaderContainer />
-
+                {/* <RealtimeChat roomName="my-chat-room" username="john_doe" /> */}
                 {/* Flight Details */}
                 <div className="flex justify-between grid grid-cols-3 gap-4 text-center border-b pb-4 flight-details-container">
                     <div className="col-span-3 col-span-3-layout mb-4">
@@ -103,7 +112,7 @@ const CrewContainer = () => {
                             {/* <button className="mt-3 flex items-center space-x-2 text-blue-600">
                             </button> */}
                         </div>
-                        <div className="bg-gray-200 flex justify-between p-4 rounded-lg flex items-center">
+                        <div onClick={goToChat} className="bg-gray-200 flex justify-between p-4 rounded-lg flex items-center cursor-pointer">
                             <div>
                                 <FaComments />
                             </div>
@@ -247,7 +256,9 @@ const CrewContainer = () => {
                         </div>
                     </div>
                 )}
-
+                {/* {isChatOpen && (
+                    <RealtimeChat roomName="my-chat-room" username="john_doe" />
+                )} */}
             </div>
         </div>
     );

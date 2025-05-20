@@ -3,7 +3,7 @@ import logo from "../../Login.png";
 import { FaSearch, FaSignOutAlt } from "react-icons/fa"; // Import the search icon
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-function HeaderContainer() {
+const HeaderContainer = () => {
     const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
     const handleLogout = () => {
