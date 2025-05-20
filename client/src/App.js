@@ -9,7 +9,8 @@ import logo from "./Login.png"
 // Initialization for ES Users
 import HeaderContainer from "./components/CrewDashboard/HeaderContainer";
 import CrewContainer from "./components/CrewDashboard/CrewContainer";
-import RealtimeChat from "../src/chat-component/realtime-chat";
+import RealtimeChat from "../src/chat-component/realtime-chat-on";
+// import RealtimeChat from "../src/chat-component/realtime-chat";
 // import { useMessagesQuery } from '/hooks/use-messages-query'
 
 function App() {
@@ -57,7 +58,7 @@ function App() {
         {isUserAuthenticatedRedux ? (
           <>
             <Route path="/crew" element={<CrewContainer />} />
-            <Route path="/chat" element={<RealtimeChat roomName="my-chat-room" username="john_doe" />} />
+            <Route path="/chat" element={<RealtimeChat roomName="public" username="test_user" />} />
             {/* <Route path="/dashboard" element={<AdminCustomerContainer />} /> */}
           </>
         ) : (

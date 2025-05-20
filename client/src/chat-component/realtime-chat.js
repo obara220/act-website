@@ -10,7 +10,7 @@ import { Input } from './ui/input'
 import { Send } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import HeaderContainer from "../components/CrewDashboard/HeaderContainer"
-import "./globals.css"
+// import "./globals.css"
 
 // interface RealtimeChatProps {
 //   roomName: string
