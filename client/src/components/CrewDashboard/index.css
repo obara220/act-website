@@ -492,3 +492,7 @@
     border-color: #00AF06;
     color: #00AF06;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
