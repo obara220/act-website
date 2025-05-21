@@ -127,7 +127,10 @@ const CrewContainer = () => {
               {/* <button className="mt-3 flex items-center space-x-2 text-blue-600">
                           </button> */}
             </div>
-            <div className="bg-gray-200 flex justify-between p-4 rounded-lg flex items-center">
+            <div
+              onClick={goToChat}
+              className="bg-gray-200 flex justify-between p-4 rounded-lg flex items-center cursor-pointer"
+            >
               <div>
                 <FaComments />
               </div>
