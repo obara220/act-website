@@ -94,7 +94,7 @@ const RealtimeChat = ({ roomName = 'public', username }) => {
                                     {isOwn ? (
                                         <>
                                             <div className="chat-text">{msg.content}</div>
-                                            <div className="chat-avatar">{initials}</div>
+                                            <div className="chat-avatar bg-green">{initials}</div>
                                         </>
                                     ) : (
                                         <>
