@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 const containerStyle = {
   width: "600px",
@@ -9,6 +9,11 @@ const containerStyle = {
 const center = {
   lat: -3.745,
   lng: -38.523,
+};
+
+const car = {
+  url: "https://images.vexels.com/media/users/3/154573/isolated/preview/bd08e000a449288c914d851cb9dae110-hatchback-car-top-view-silhouette-by-vexels.png", // or use a URL: 'https://example.com/car.png'
+  scaledSize: { width: 40, height: 40 },
 };
 
 function GoogleMapComponent() {
@@ -35,11 +40,13 @@ function GoogleMapComponent() {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={10}
+      zoom={20}
       onLoad={onLoad}
       onUnmount={onUnmount}
+      id="traffic-example"
     >
       {/* Child components, such as markers, info windows, etc. */}
+      <Marker position={center} icon={car} />
       <></>
     </GoogleMap>
   ) : (
