@@ -16,6 +16,7 @@ import RealtimeChat from "../src/chat-component/realtime-chat-on";
 function App() {
   const [isUserAuthenticated, setUserAuthorization] = useState(false);
   const isUserAuthenticatedRedux = useSelector((state) => state.auth.isAuthenticated); // Access Redux state
+  const userName = useSelector((state) => state.auth.uName);
   const [isAdmin, setAdmin] = useState(
     sessionStorage.getItem("isAdmin") === "true" || false
   );
@@ -23,7 +24,6 @@ function App() {
     sessionStorage.getItem("customerId") || undefined
   );
   // const { data: messages } = useMessagesQuery()
-
   const setUserAuthenticatedStatus = (isAdmin, customerId) => {
     setUserAuthorization(true);
     setAdmin(isAdmin);
@@ -46,7 +46,7 @@ function App() {
         {isUserAuthenticatedRedux ? (
           <>
             <Route path="/crew" element={<CrewContainer />} />
-            <Route path="/chat" element={<RealtimeChat roomName="public" username="test_user" />} />
+            <Route path="/chat" element={<RealtimeChat roomName="public" username={userName} />} />
             {/* <Route path="/dashboard" element={<AdminCustomerContainer />} /> */}
           </>
         ) : (

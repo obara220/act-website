@@ -2,10 +2,14 @@ import { useEffect, useState, useCallback } from 'react';
 import { supabase } from './supabaseClient';
 import ChatHeaderContainer from './ChatHeaderContainer';
 import { FaSearch, FaSignOutAlt, FaArrowLeft, FaPaperPlane } from "react-icons/fa"; // Import the search icon
+import { useSelector } from "react-redux"; // Import useSelector
+
 import "./index.css";
+
 // import "./globals.css"
 
 const RealtimeChat = ({ roomName = 'public', username }) => {
+
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
 
@@ -69,7 +73,7 @@ const RealtimeChat = ({ roomName = 'public', username }) => {
     return (
         <div className="p-6 w-full pr-6 pl-6">
 
-            <ChatHeaderContainer />
+            <ChatHeaderContainer username={username} />
             <div className="chat-wrapper">
                 <div className="chat-box">
                     <div className="chat-header">

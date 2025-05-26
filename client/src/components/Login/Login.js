@@ -39,7 +39,7 @@ function Login(props) {
   );
   // Adding click handler
   function handleClick() {
-    if (uname === "crew@gmail.com" && password === "123") {
+    if (uname === "crew@gmail.com" && password === "123" || uname === 'driver@gmail.com' && password === '123') {
       sessionStorage.setItem("isUserAuthenticated", true);
       setError("");
       setNextStep(true);
@@ -106,6 +106,11 @@ function Login(props) {
   // Function to handle changes in email input
   function changeName(event) {
     setUname(event.target.value);
+    console.log(event.target.value, '---uname----')
+    dispatch({
+      type: 'SET_USER_NAME',
+      payload: event.target.value
+    });
   }
 
   // Function to handle changes in password input

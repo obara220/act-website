@@ -1,9 +1,9 @@
 import { useState } from "react";
 // import logo from "../../Login.png";
-import { FaSearch, FaSignOutAlt, FaArrowLeft, FaPaperPlane  } from "react-icons/fa"; // Import the search icon
+import { FaSearch, FaSignOutAlt, FaArrowLeft, FaPaperPlane } from "react-icons/fa"; // Import the search icon
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Driver from "../images/Male.png"
-const ChatHeaderContainer = () => {
+const ChatHeaderContainer = ({ username }) => {
     const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
     const handleLogout = () => {
@@ -30,9 +30,9 @@ const ChatHeaderContainer = () => {
                 </div>
                 <div>
                     <h1 className="header-title">
-                        <span>Jhon Doe</span>
+                        <span>{ username }</span>
                     </h1>
-                    <p className="header-subtitle" style={{color: '#1cdb1c'}}>Online</p>
+                    <p className="header-subtitle" style={{ color: '#1cdb1c' }}>Online</p>
                 </div>
             </div>
             {/* <div className="flex items-center justify-between"> */}
