@@ -20,7 +20,7 @@ const car = {
 function GoogleMapComponent({ driverLocation = defaultCenter }) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "YOUR_API_KEY",
+    googleMapsApiKey: "AIzaSyAxmNyc2scn1nCxBl4_-dxzVzNfpX86YcU",
   });
 
   const [map, setMap] = React.useState(null);
